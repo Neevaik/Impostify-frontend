@@ -1,0 +1,17 @@
+export const words = [
+    "Pizza",
+    "Plage",
+    "Football",
+    "Cinéma",
+    "Avion",
+    "Montagne",
+    "Restaurant",
+    "Ordinateur",
+    "Chat",
+    "Chien",
+    "Voiture",
+    "École",
+    "Hôpital",
+    "Supermarché",
+    "Vacances",
+];
