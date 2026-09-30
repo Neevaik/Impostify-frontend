@@ -1,7 +1,6 @@
 import { useRouter, useLocalSearchParams } from "expo-router";
 import { useState } from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
-
 import { globalStyles } from "../styles/global";
 
 export default function gameSetup() {
@@ -22,74 +21,100 @@ export default function gameSetup() {
 
     return (
         <View style={globalStyles.container}>
-            <View style={globalStyles.content}>
+            <View style={globalStyles.page}>
+                <View style={globalStyles.card}>
+                    <Text style={globalStyles.title}>IMPOSTEURS</Text>
 
-                <Text style={globalStyles.title}>Nombre d'imposteurs</Text>
+                    <Text style={styles.info}>{playersCount} joueurs</Text>
 
-                <Text style={styles.info}>{playersCount} joueurs</Text>
+                    <View style={styles.counterCard}>
+                        <Pressable
+                            style={({ pressed }) => [
+                                styles.counterButton,
+                                { opacity: pressed ? 0.8 : 1 },
+                            ]}
+                            onPress={() => setImpostors(Math.max(1, impostors - 1))}
+                        >
+                            <Text style={styles.counterText}>−</Text>
+                        </Pressable>
 
-                <View style={styles.counter}>
-                    <Pressable style={styles.counterButton}
-                        onPress={() => setImpostors(Math.max(1, impostors - 1))}>
-                        <Text style={styles.counterText}>-</Text>
-                    </Pressable>
+                        <Text style={styles.number}>{impostors}</Text>
 
-                    <Text style={styles.number}>{impostors}</Text>
+                        <Pressable
+                            style={({ pressed }) => [
+                                styles.counterButton,
+                                { opacity: pressed ? 0.8 : 1 },
+                            ]}
+                            onPress={() => setImpostors(Math.min(Number(playersCount) - 1, impostors + 1))}
+                        >
+                            <Text style={styles.counterText}>+</Text>
+                        </Pressable>
+                    </View>
 
-                    <Pressable style={styles.counterButton}
-                        onPress={() => setImpostors(Math.min(Number(playersCount) - 1, impostors + 1))}>
-                        <Text style={styles.counterText}>+</Text>
+                    <Pressable
+                        style={({ pressed }) => [
+                            globalStyles.button,
+                            { opacity: pressed ? 0.9 : 1 },
+                        ]}
+                        onPress={handleNext}
+                    >
+                        <Text style={globalStyles.buttonText}>CONTINUER</Text>
                     </Pressable>
                 </View>
-
-                <Pressable
-                    style={globalStyles.button}
-                    onPress={handleNext}>
-                    <Text style={globalStyles.buttonText}>CONTINUER</Text>
-                </Pressable>
-
             </View>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    label: {
-        color: "#FFFFFF",
-        fontSize: 20,
-        marginBottom: 15,
+    info: {
+        color: "#A7B4C2",
+        fontSize: 16,
+        marginBottom: 20,
+        textAlign: "center",
+        letterSpacing: 0.5,
     },
 
-    counter: {
+    counterCard: {
         flexDirection: "row",
         alignItems: "center",
-        marginBottom: 40,
+        justifyContent: "center",
+        backgroundColor: "rgba(255,255,255,0.04)",
+        borderRadius: 18,
+        borderWidth: 1,
+        borderColor: "rgba(255,255,255,0.08)",
+        paddingVertical: 18,
+        paddingHorizontal: 18,
+        marginBottom: 28,
     },
 
     counterButton: {
-        width: 50,
-        height: 50,
-        backgroundColor: "#FFFFFF",
-        borderRadius: 10,
+        width: 56,
+        height: 56,
+        backgroundColor: "#7DD3FC",
+        borderRadius: 14,
         alignItems: "center",
         justifyContent: "center",
+        shadowColor: "#7DD3FC",
+        shadowOffset: { width: 0, height: 8 },
+        shadowOpacity: 0.3,
+        shadowRadius: 10,
+        elevation: 4,
     },
 
     counterText: {
-        color: "#111111",
-        fontSize: 28,
-        fontWeight: "bold",
+        color: "#0F172A",
+        fontSize: 30,
+        fontWeight: "700",
+        lineHeight: 30,
     },
 
     number: {
-        color: "#FFFFFF",
-        fontSize: 28,
-        fontWeight: "bold",
-        marginHorizontal: 30,
-    },
-    info: {
-        color: "#AAAAAA",
-        fontSize: 16,
-        marginBottom: 15,
+        color: "#F8FAFC",
+        fontSize: 34,
+        fontWeight: "800",
+        marginHorizontal: 32,
+        minWidth: 32,
+        textAlign: "center",
     },
 });

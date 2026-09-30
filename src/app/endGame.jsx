@@ -22,55 +22,38 @@ export default function endGame() {
 
     return (
         <View style={globalStyles.container}>
-            <View style={globalStyles.content}>
+            <View style={globalStyles.page}>
+                <View style={globalStyles.card}>
+                    <Text style={globalStyles.title}>PARTIE TERMINÉE</Text>
 
-                <Text style={globalStyles.title}>
-                    PARTIE TERMINÉE
-                </Text>
-
-                {isCivilsWinner ? (
-                    <>
-                        <Text style={styles.emoji}>
-                            🎉
-                        </Text>
-
-                        <Text style={styles.winner}>
-                            LES CIVILS ONT GAGNÉ !
-                        </Text>
-
-                        <Text style={globalStyles.subtitle}>
-                            Tous les imposteurs ont été trouvés.
-                        </Text>
-                    </>
-                ) : (
-                    <>
-                        <Text style={styles.emoji}>
-                            👿
-                        </Text>
-
-                        <Text style={styles.winner}>
-                            LES IMPOSTEURS ONT GAGNÉ !
-                        </Text>
-
-                        <Text style={globalStyles.subtitle}>
-                            Les imposteurs sont désormais majoritaires.
-                        </Text>
-                    </>
-                )}
-
-                <View style={styles.buttonsContainer}>
+                    {isCivilsWinner ? (
+                        <>
+                            <Text style={styles.emoji}>🎉</Text>
+                            <Text style={styles.winner}>LES CIVILS ONT GAGNÉ !</Text>
+                            <Text style={globalStyles.subtitle}>
+                                Tous les imposteurs ont été trouvés.
+                            </Text>
+                        </>
+                    ) : (
+                        <>
+                            <Text style={styles.emoji}>👿</Text>
+                            <Text style={styles.winner}>LES IMPOSTEURS ONT GAGNÉ !</Text>
+                            <Text style={globalStyles.subtitle}>
+                                Les imposteurs sont désormais majoritaires.
+                            </Text>
+                        </>
+                    )}
 
                     <Pressable
-                        style={styles.homeButton}
+                        style={({ pressed }) => [
+                            globalStyles.button,
+                            { opacity: pressed ? 0.9 : 1 },
+                        ]}
                         onPress={handleHome}
                     >
-                        <Text style={styles.homeButtonText}>
-                            REJOUER
-                        </Text>
+                        <Text style={globalStyles.buttonText}>REJOUER</Text>
                     </Pressable>
-
                 </View>
-
             </View>
         </View>
     );
@@ -78,38 +61,17 @@ export default function endGame() {
 
 const styles = StyleSheet.create({
     emoji: {
-        fontSize: 60,
-        marginBottom: 20,
+        fontSize: 64,
+        marginBottom: 18,
+        textAlign: "center",
     },
 
     winner: {
-        color: "#FFFFFF",
-        fontSize: 26,
-        fontWeight: "bold",
+        color: "#F8FAFC",
+        fontSize: 24,
+        fontWeight: "800",
         textAlign: "center",
-        marginBottom: 15,
-    },
-
-    buttonsContainer: {
-        width: "100%",
-        alignItems: "center",
-        marginTop: 20,
-        gap: 15,
-    },
-
-    homeButton: {
-        width: "80%",
-        maxWidth: 400,
-        paddingVertical: 18,
-        borderRadius: 12,
-        borderWidth: 1,
-        borderColor: "#555555",
-        alignItems: "center",
-    },
-
-    homeButtonText: {
-        color: "#FFFFFF",
-        fontSize: 18,
-        fontWeight: "bold",
+        marginBottom: 12,
+        lineHeight: 32,
     },
 });

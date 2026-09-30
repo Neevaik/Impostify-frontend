@@ -46,72 +46,92 @@ export default function DistributionScreen() {
 
     return (
         <View style={globalStyles.container}>
-            <View style={globalStyles.content}>
+            <View style={globalStyles.page}>
+                <View style={globalStyles.card}>
+                    <Text style={globalStyles.title}>DISTRIBUTION</Text>
 
-                <Text style={globalStyles.title}>
-                    DISTRIBUTION
-                </Text>
+                    <View style={styles.playerBadge}>
+                        <Text style={styles.player}>{playerList[currentPlayer - 1]}</Text>
+                    </View>
 
-                <Text style={styles.player}>
-                    {playerList[currentPlayer - 1]}
-                </Text>
-
-                {!showRole ? (
-                    <>
-                        <Text style={globalStyles.subtitle}>
-                            Appuyez pour découvrir votre rôle
-                        </Text>
-
-                        <Pressable
-                            style={globalStyles.button}
-                            onPress={() => setShowRole(true)}
-                        >
-                            <Text style={globalStyles.buttonText}>
-                                VOIR MON RÔLE
+                    {!showRole ? (
+                        <>
+                            <Text style={globalStyles.subtitle}>
+                                Appuyez pour découvrir votre rôle
                             </Text>
-                        </Pressable>
-                    </>
-                ) : (
-                    <>
-                        {currentPlayerData.role === "CIVIL" && (
-                            <Text style={styles.role}>
-                                {currentPlayerData.word}
-                            </Text>
-                        )}
 
-                        {currentPlayerData.role === "IMPOSTOR" && (
-                            <Text style={styles.role}>
-                                Vous êtes l'imposteur
-                            </Text>
-                        )}
+                            <Pressable
+                                style={({ pressed }) => [
+                                    globalStyles.button,
+                                    { opacity: pressed ? 0.9 : 1 },
+                                ]}
+                                onPress={() => setShowRole(true)}
+                            >
+                                <Text style={globalStyles.buttonText}>VOIR MON RÔLE</Text>
+                            </Pressable>
+                        </>
+                    ) : (
+                        <>
+                            <View style={styles.roleCard}>
+                                {currentPlayerData.role === "CIVIL" && (
+                                    <Text style={styles.role}>{currentPlayerData.word}</Text>
+                                )}
 
-                        <Pressable
-                            style={globalStyles.button}
-                            onPress={handleNext}
-                        >
-                            <Text style={globalStyles.buttonText}>
-                                SUIVANT
-                            </Text>
-                        </Pressable>
-                    </>
-                )}
+                                {currentPlayerData.role === "IMPOSTOR" && (
+                                    <Text style={styles.role}>Vous êtes l'imposteur</Text>
+                                )}
+                            </View>
 
+                            <Pressable
+                                style={({ pressed }) => [
+                                    globalStyles.button,
+                                    { opacity: pressed ? 0.9 : 1 },
+                                ]}
+                                onPress={handleNext}
+                            >
+                                <Text style={globalStyles.buttonText}>SUIVANT</Text>
+                            </Pressable>
+                        </>
+                    )}
+                </View>
             </View>
         </View>
     );
 }
+
 const styles = StyleSheet.create({
+    playerBadge: {
+        backgroundColor: "rgba(125, 211, 252, 0.12)",
+        borderRadius: 16,
+        borderWidth: 1,
+        borderColor: "rgba(125, 211, 252, 0.3)",
+        paddingVertical: 14,
+        paddingHorizontal: 16,
+        marginBottom: 24,
+        alignItems: "center",
+    },
+
     player: {
-        color: "#FFFFFF",
-        fontSize: 30,
-        fontWeight: "bold",
-        marginBottom: 30,
+        color: "#F8FAFC",
+        fontSize: 28,
+        fontWeight: "700",
+        textTransform: "capitalize",
+    },
+
+    roleCard: {
+        backgroundColor: "rgba(255,255,255,0.04)",
+        borderRadius: 18,
+        borderWidth: 1,
+        borderColor: "rgba(255,255,255,0.08)",
+        padding: 22,
+        marginBottom: 24,
+        alignItems: "center",
     },
 
     role: {
-        color: "#FFFFFF",
-        fontSize: 36,
-        fontWeight: "bold",
-        marginBottom: 40,
+        color: "#F8FAFC",
+        fontSize: 28,
+        fontWeight: "700",
+        textAlign: "center",
     },
 });

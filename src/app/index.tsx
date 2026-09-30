@@ -20,7 +20,10 @@ export default function HomeScreen() {
         </Text>
 
         <Pressable
-          style={globalStyles.button}
+          style={({ pressed }) => [
+            globalStyles.button,
+            { opacity: pressed ? 0.9 : 1 },
+          ]}
           onPress={handlePlay}
         >
           <Text style={globalStyles.buttonText}>JOUER</Text>
