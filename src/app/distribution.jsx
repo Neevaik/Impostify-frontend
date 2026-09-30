@@ -60,13 +60,7 @@ export default function DistributionScreen() {
                                 Appuyez pour découvrir votre rôle
                             </Text>
 
-                            <Pressable
-                                style={({ pressed }) => [
-                                    globalStyles.button,
-                                    { opacity: pressed ? 0.9 : 1 },
-                                ]}
-                                onPress={() => setShowRole(true)}
-                            >
+                            <Pressable style={({ pressed }) => [globalStyles.button, { opacity: pressed ? 0.9 : 1 },]} onPress={() => setShowRole(true)}>
                                 <Text style={globalStyles.buttonText}>VOIR MON RÔLE</Text>
                             </Pressable>
                         </>
@@ -82,13 +76,7 @@ export default function DistributionScreen() {
                                 )}
                             </View>
 
-                            <Pressable
-                                style={({ pressed }) => [
-                                    globalStyles.button,
-                                    { opacity: pressed ? 0.9 : 1 },
-                                ]}
-                                onPress={handleNext}
-                            >
+                            <Pressable style={({ pressed }) => [globalStyles.button, { opacity: pressed ? 0.9 : 1 },]} onPress={handleNext}>
                                 <Text style={globalStyles.buttonText}>SUIVANT</Text>
                             </Pressable>
                         </>

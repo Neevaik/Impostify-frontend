@@ -10,22 +10,16 @@ import { globalStyles } from "../styles/global";
 
 export default function GameScreen() {
     const router = useRouter();
-
     const { playersData } = useLocalSearchParams();
-
     const initialPlayers = JSON.parse(playersData);
-
     const [players, setPlayers] = useState(
         initialPlayers.map((player) => ({
             ...player,
             eliminated: false,
         }))
     );
-
     const [selectedPlayer, setSelectedPlayer] = useState(null);
-
     const [showResults, setShowResults] = useState(false);
-
     const [turn, setTurn] = useState(1);
 
     const selectPlayer = (index) => {
@@ -151,13 +145,7 @@ export default function GameScreen() {
                                 )}
                             </View>
 
-                            <Pressable
-                                style={({ pressed }) => [
-                                    globalStyles.button,
-                                    { opacity: pressed ? 0.9 : 1 },
-                                ]}
-                                onPress={handleNextTurn}
-                            >
+                            <Pressable style={({ pressed }) => [globalStyles.button, { opacity: pressed ? 0.9 : 1 },]} onPress={handleNextTurn}>
                                 <Text style={globalStyles.buttonText}>CONTINUER</Text>
                             </Pressable>
                         </>

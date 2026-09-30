@@ -28,36 +28,18 @@ export default function gameSetup() {
                     <Text style={styles.info}>{playersCount} joueurs</Text>
 
                     <View style={styles.counterCard}>
-                        <Pressable
-                            style={({ pressed }) => [
-                                styles.counterButton,
-                                { opacity: pressed ? 0.8 : 1 },
-                            ]}
-                            onPress={() => setImpostors(Math.max(1, impostors - 1))}
-                        >
+                        <Pressable style={({ pressed }) => [styles.counterButton, { opacity: pressed ? 0.8 : 1 },]} onPress={() => setImpostors(Math.max(1, impostors - 1))}>
                             <Text style={styles.counterText}>−</Text>
                         </Pressable>
 
                         <Text style={styles.number}>{impostors}</Text>
 
-                        <Pressable
-                            style={({ pressed }) => [
-                                styles.counterButton,
-                                { opacity: pressed ? 0.8 : 1 },
-                            ]}
-                            onPress={() => setImpostors(Math.min(Number(playersCount) - 1, impostors + 1))}
-                        >
+                        <Pressable style={({ pressed }) => [styles.counterButton, { opacity: pressed ? 0.8 : 1 },]} onPress={() => setImpostors(Math.min(Number(playersCount) - 2, impostors + 1))}>
                             <Text style={styles.counterText}>+</Text>
                         </Pressable>
                     </View>
 
-                    <Pressable
-                        style={({ pressed }) => [
-                            globalStyles.button,
-                            { opacity: pressed ? 0.9 : 1 },
-                        ]}
-                        onPress={handleNext}
-                    >
+                    <Pressable style={({ pressed }) => [globalStyles.button, { opacity: pressed ? 0.9 : 1 },]} onPress={handleNext}>
                         <Text style={globalStyles.buttonText}>CONTINUER</Text>
                     </Pressable>
                 </View>

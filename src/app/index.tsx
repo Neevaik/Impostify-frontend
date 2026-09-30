@@ -19,13 +19,7 @@ export default function HomeScreen() {
           Le jeu de l'imposteur
         </Text>
 
-        <Pressable
-          style={({ pressed }) => [
-            globalStyles.button,
-            { opacity: pressed ? 0.9 : 1 },
-          ]}
-          onPress={handlePlay}
-        >
+        <Pressable style={({ pressed }) => [globalStyles.button, { opacity: pressed ? 0.9 : 1 },]} onPress={handlePlay}>
           <Text style={globalStyles.buttonText}>JOUER</Text>
         </Pressable>
       </View>

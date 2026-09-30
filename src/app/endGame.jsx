@@ -11,9 +11,7 @@ import { globalStyles } from "../styles/global";
 
 export default function endGame() {
     const router = useRouter();
-
     const { winner } = useLocalSearchParams();
-
     const isCivilsWinner = winner === "CIVILS";
 
     const handleHome = () => {
@@ -45,12 +43,7 @@ export default function endGame() {
                     )}
 
                     <Pressable
-                        style={({ pressed }) => [
-                            globalStyles.button,
-                            { opacity: pressed ? 0.9 : 1 },
-                        ]}
-                        onPress={handleHome}
-                    >
+                        style={({ pressed }) => [globalStyles.button, { opacity: pressed ? 0.9 : 1 },]} onPress={handleHome}>
                         <Text style={globalStyles.buttonText}>REJOUER</Text>
                     </Pressable>
                 </View>
